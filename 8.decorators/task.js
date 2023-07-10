@@ -7,8 +7,8 @@ function cachingDecoratorNew(func) {
     const hash = md5(JSON.stringify(args)); // получаем правильный хеш с помощью функции md5
     let objectInCache = cache.find((item) => item.hash === hash); // ищем элемент, хеш которого равен нашему хешу
     if (objectInCache) { // если элемент найден
-      console.log("Из кеша: " + objectInCache.value); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
-      return "Из кеша: " + objectInCache.value;
+      console.log("_Из кэша: " + objectInCache.value); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
+      return "Из кэша: " + objectInCache.value;
     }
     
     let result = func(...args); // в кеше результата нет — придётся считать
@@ -16,7 +16,7 @@ function cachingDecoratorNew(func) {
     if (cache.length > 5) {
       cache.shift(); // если слишком много элементов в кеше, надо удалить самый старый (первый)
     }
-    console.log("Вычисляем: " + result);
+    console.log("_Вычисляем: " + result);
     return "Вычисляем: " + result;
   }
   return wrapper;
